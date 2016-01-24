@@ -18,7 +18,7 @@ do
 			wget -q --spider -e use_proxy=yes -e http_proxy=$http_proxy -q --tries=1 --timeout=0.3 --spider http://google.com
 
 			if [ $? -eq 0 ]; then
-				echo "${http_proxy}" >> proxies.txt
+				echo "${http_proxy}" > proxies.txt
 			fi
 		done
 	done
