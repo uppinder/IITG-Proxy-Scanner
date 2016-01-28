@@ -17,10 +17,12 @@ do
 		do
 			http_proxy="http://172.16.${i}.${j}:${port}"
 			#echo "Checking ${http_proxy}"
-			wget -q --spider -e use_proxy=yes -e http_proxy=$http_proxy -q --tries=1 --timeout=0.1 --spider http://google.com
+			wget -e use_proxy=yes -e http_proxy=$http_proxy -q --tries=1 --timeout=0.3 --spider http://google.com
 			
 			if [ $? -eq 0 ]; then
 				echo "${http_proxy:7}" >> proxies.txt
+			elif [ $? -eq 8 ]; then
+				echo "${http_proxy:7} Requires User & Password" >> proxies.txt
 			fi
 
 			(( counter++ ))
